@@ -36,9 +36,9 @@ def parse_args():
 def generate(prompt: str, key: str) -> str:
     r = requests.post(
         URL,
-        params={"key": key},
+        headers={"x-goog-api-key": key},
         json={"contents": [{"parts": [{"text": prompt}]}],
-              "generationConfig": {"maxOutputTokens": 8000,
+              "generationConfig": {"maxOutputTokens": 8000, "thinkingConfig": {"thinkingBudget": 0},
                                    "thinkingConfig": {"thinkingBudget": 0}}},
         timeout=120,
     )
